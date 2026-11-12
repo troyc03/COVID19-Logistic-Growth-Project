@@ -1,12 +1,3 @@
-"""Discrete logistic growth model and fitting utilities.
-
-The recurrence is
-    P[t + 1] = P[t] + r * P[t] * (1 - P[t] / K)
-
-Time is measured in discrete steps (for example, weeks for weekly COVID data).
-The model is most useful for a single approximately logistic growth wave; it
-should not be fit blindly to a multi-wave cumulative COVID-19 series.
-"""
 
 import numpy as np
 import matplotlib.pyplot as plt
