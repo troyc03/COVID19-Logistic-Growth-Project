@@ -1,14 +1,3 @@
-"""Continuous logistic growth model and fitting utilities.
-
-The model is dP/dt = r * P * (1 - P/K), where:
-- P(t) is cumulative population/case count,
-- r is the growth rate (per time unit),
-- K is the carrying capacity (upper asymptote).
-
-For this project, time is measured in weeks when fitting weekly COVID-19 data.
-"""
-
-from __future__ import annotations
 
 import numpy as np
 import matplotlib.pyplot as plt
