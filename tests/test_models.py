@@ -35,3 +35,13 @@ def test_forecast_returns_future_points():
     future,pred,params=Forecasting.forecast(t,y,horizon=5)
     assert len(future)==5 and len(pred)==5
     assert future[0]==20 and np.all(np.diff(pred)>0)
+
+def test_completed_notebooks_have_valid_json_and_python():
+    import ast, json
+    notebook_names=["growth_rate_analysis.ipynb","deaths_per_case.ipynb","logistic_model_fitting.ipynb"]
+    for name in notebook_names:
+        nb=json.loads((ROOT/"notebooks"/name).read_text(encoding="utf-8"))
+        for cell in nb["cells"]:
+            if cell["cell_type"]=="code":
+                source="".join(cell.get("source",[]))
+                ast.parse(source,filename=name)
