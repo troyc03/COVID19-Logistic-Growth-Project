@@ -2,8 +2,10 @@
 import sys
 from pathlib import Path
 import numpy as np
+
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"Python"))
+
 from continuous_logistic_model import logistic_curve,simulate_logistic_growth,fit_logistic_growth
 from discrete_logistic_model import discrete_logistic_growth
 from model_evaluation import evaluate_predictions
