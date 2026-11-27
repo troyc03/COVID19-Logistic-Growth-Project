@@ -491,7 +491,7 @@ The expected outcomes of this project include:
 - Numerical simulations in Python and MATLAB.
 - Comparison of discrete and continuous model behavior.
 - Estimated logistic parameters from historical U.S. COVID-19 data.
-- Short-term forecasts over 7-, 14-, and 30-day horizons.
+- Weekly forecasts over 7-, 14-, and 30-week horizons (as used by the weekly cleaned dataset).
 - Quantitative evaluation of forecasting performance.
 - Discussion of the strengths and limitations of classical logistic growth models.
 
@@ -517,11 +517,9 @@ Additional peer-reviewed research papers and relevant preprints will be incorpor
 
 # Project Status
 
-**Status:** In Development
+**Status:** Analysis and implementation substantially complete (reproducibility review pending).
 
-The project is currently focused on mathematical derivations, numerical simulations, and implementation of the discrete and continuous logistic growth models.
-
-The COVID-19 data analysis, parameter estimation, and forecasting components will follow.
+The mathematical models, data cleaning, exploratory analysis, wave segmentation, growth-rate and death/case analyses, logistic fitting, forecasting utilities, and model evaluation are implemented. The notebooks and automated Python smoke tests are provided. Results should be rerun and reviewed before treating this project as a final research report.
 
 ---
 
@@ -548,3 +546,16 @@ Potential extensions include:
 **Primary Tools:** Python, MATLAB, Jupyter Notebook
 
 **Research Focus:** Applied Mathematics, Mathematical Modeling, Numerical Analysis, and Time-Series Forecasting.
+
+
+## Reproducible analysis and completed components
+
+See [completion notes](README-completion-notes.md) for notebook order, setup, module APIs, and interpretation guidance. The notebook sequence now includes growth-rate analysis, deaths-to-case ratio exploration, and single-wave logistic fitting with chronological holdout and horizon forecasts.
+
+Run the Python smoke tests after installing dependencies:
+
+```bash
+pytest -q
+```
+
+Forecast horizons in the fitting notebook are measured in **weeks**, matching the weekly cleaned dataset. The model's carrying capacity is an estimated asymptote, not a population-level infection limit. Multi-wave cumulative data should not be fit with one logistic curve.

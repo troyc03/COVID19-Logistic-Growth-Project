@@ -1,15 +1,10 @@
+"""Model evaluation metrics."""
 import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score
-from parameter_estimation import *
 
-mse = mean_squared_error(y_data, y_pred_data)
-rmse = np.sqrt(mse)
-mape = mean_absolute_percentage_error(y_data, y_pred_data)
-r2 = r2_score(y_data, y_pred_data)
-
-# Print the final performance report
-print("\n=== Model Performance Evaluation ===")
-print(f"Mean Squared Error (MSE):           {mse:.4f}")
-print(f"Root Mean Squared Error (RMSE):     {rmse:.4f}")
-print(f"Mean Absolute Percentage Error (MAPE): {mape*100:.2f}%")
-print(f"R² Coefficient of Determination:     {r2:.4f}")
+def evaluate_predictions(actual,predicted):
+    y=np.asarray(actual,float); p=np.asarray(predicted,float)
+    if y.shape!=p.shape or y.size==0: raise ValueError("actual and predicted must have equal non-empty shapes")
+    if not np.all(np.isfinite(y)) or not np.all(np.isfinite(p)): raise ValueError("Inputs must be finite")
+    e=y-p; mse=float(np.mean(e**2)); denom=float(np.sum((y-y.mean())**2))
+    mape=float(np.mean(np.abs(e[y!=0]/y[y!=0]))*100) if np.any(y!=0) else float("nan")
+    return {"MAE":float(np.mean(np.abs(e))),"MSE":mse,"RMSE":float(np.sqrt(mse)),"MAPE_percent":mape,"R2":float(1-np.sum(e**2)/denom) if denom else float("nan")}
