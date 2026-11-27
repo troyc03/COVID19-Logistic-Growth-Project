@@ -17,6 +17,7 @@ def plot_dynamics(p0=10,K=500,t_max=50,r_values=(.7,1.9,2.6)):
     fig,axes=plt.subplots(len(r_values),2,figsize=(12,4*len(r_values)))
     if len(r_values)==1: axes=np.array([axes])
     grid=np.linspace(0,1.5*K,500)
+    
     for i,r in enumerate(r_values):
         series=discrete_logistic_growth(p0,r,K,t_max); ax=axes[i,0]
         ax.plot(np.arange(len(series)),series,marker=".",ms=3); ax.axhline(K,ls="--",label="K")
@@ -26,5 +27,6 @@ def plot_dynamics(p0=10,K=500,t_max=50,r_values=(.7,1.9,2.6)):
             ax.plot([p,p],[p,q],color="tab:red",alpha=.4,lw=.8); ax.plot([p,q],[q,q],color="tab:red",alpha=.4,lw=.8)
         ax.set(title=f"Cobweb r={r:g}",xlabel="P_n",ylabel="P_(n+1)"); ax.grid(alpha=.25); ax.legend()
     fig.tight_layout(); return fig,axes
+    
 if __name__=="__main__":
     plot_dynamics(); plt.show()
