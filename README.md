@@ -491,7 +491,7 @@ The expected outcomes of this project include:
 - Numerical simulations in Python and MATLAB.
 - Comparison of discrete and continuous model behavior.
 - Estimated logistic parameters from historical U.S. COVID-19 data.
-- Short-term forecasts over 7-, 14-, and 30-day horizons.
+- Weekly forecasts over 7-, 14-, and 30-week horizons (as used by the weekly cleaned dataset).
 - Quantitative evaluation of forecasting performance.
 - Discussion of the strengths and limitations of classical logistic growth models.
 
